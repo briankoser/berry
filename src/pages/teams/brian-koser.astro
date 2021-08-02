@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+import teams from '../../data/2020/teams.json';
+let teamId = 1;
+let team = teams[0].teams.find(t => t.id === teamId);
+let ownerId = team.owners[0];
+let owner = teams[0].members.find(m => m.id === ownerId);
+
+import draft from '../../data/2020/draft.json';
+let draftOrder = draft.teams.find(t => t.id === teamId).draftOrder;
+
+function teamName(team) {
+  return `${team.location} ${team.nickname}`;
+}
+---
+<BaseLayout title="Homepage">
+  <h2>{teamName(team)}</h2>
+
+  <h3>Season</h3>
+  <table>
+    <thead>
+      <th>Owner</th>
+      <th>Draft Order</th>
+      <!-- <th>Highest Total</th>
+      <th>Lowest Total</th>
+      <th>Perfect Starts</th>
+      <th>Regular Season Points</th>
+      <th>Playoffs Points</th>
+      <th>Highest MVP Points</th>
+      <th>Highest MVP Player</th>
+      <th>Lowest MVP Points</th>
+      <th>Lowest MVP Player</th>
+      <th>Highest LVP Points</th>
+      <th>Highest LVP Player</th>
+      <th>Lowest LVP Points</th>
+      <th>Lowest LVP Player</th>
+      <th>Season MVP Points</th>
+      <th>Season MVP Player</th> -->
+    </thead>
+    <tbody>
+        <tr>
+            <td>{owner.displayName}</td>
+            <td>{draftOrder}</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <h3>Weekly</h3>
+  <table>
+    <thead>
+        <th>Week</th>
+        <th>QB</th>
+        <th>RB</th>
+        <th>WR</th>
+        <th>TE</th>
+        <th>Flex</th>
+        <th>D/ST</th>
+        <th>K</th>
+        <th>Actual</th>
+        <th>Bench</th>
+        <th>Additional Points Possible</th>
+        <th>Total Possible</th>
+        <th>Projected Points</th>
+        <th>MVP</th>
+        <th>MVP Points</th>
+        <th>LVP</th>
+        <th>LVP Points</th>
+        <th>Bench MVP</th>
+        <th>Bench MVP Points</th>
+    </thead>
+    <tbody>
+        <td>Week</td>
+        <td>QB</td>
+        <td>RB</td>
+        <td>WR</td>
+        <td>TE</td>
+        <td>Flex</td>
+        <td>D/ST</td>
+        <td>K</td>
+        <td>Actual</td>
+        <td>Bench</td>
+        <td>Additional Points Possible</td>
+        <td>Total Possible</td>
+        <td>Projected Points</td>
+        <td>MVP</td>
+        <td>MVP Points</td>
+        <td>LVP</td>
+        <td>LVP Points</td>
+        <td>Bench MVP</td>
+        <td>Bench MVP Points</td>
+    </tbody>
+  </table>
+</BaseLayout>
